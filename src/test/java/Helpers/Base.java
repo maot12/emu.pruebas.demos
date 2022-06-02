@@ -5,10 +5,12 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 /**
  * @author mortega2
@@ -18,7 +20,7 @@ import java.net.URL;
 public class Base {
 
     protected AndroidDriver driver;
-    protected WebDriverWait myWaitVar;
+    WebDriverWait waitForToast;
 
     public Base(AndroidDriver driver){
         this.driver = driver;
@@ -49,5 +51,15 @@ public class Base {
     public void type(By locator, String texto){
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(texto);
+    }
+
+    public void click(By locator){
+        driver.findElement(locator).click();
+    }
+
+    public String esperarHastaConTexto(By locator){
+        waitForToast = new WebDriverWait(driver, Duration.ofSeconds(25));
+        waitForToast.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        return driver.findElement(locator).getText();
     }
 }
