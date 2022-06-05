@@ -1,18 +1,10 @@
 package test.java.Pages;
 
-import Helpers.Base;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static io.appium.java_client.MobileBy.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import test.java.Helpers.Base;
 
 /**
  * @author mortega2
@@ -22,36 +14,48 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 public class GeneralStoreHomePage extends Base {
 
     public static String textoToast = "";
+    public static String textoHome = "";
 
-    By txtName = By.id("com.androidsample.generalstore:id/nameField");
-    By btnLetShop = By.id("com.androidsample.generalstore:id/btnLetsShop");
-    By radMale = By.id("com.androidsample.generalstore:id/radioMale");
-    By radFema = By.id("com.androidsample.generalstore:id/radioMale");
-    By spinCon = By.id("com.androidsample.generalstore:id/spinnerCountry");
-
-    By toastMsg = By.xpath("//android.widget.Toast[@text='Please enter your name']");
-
-
-
-
-
-
+    public By txtName = By.id("com.androidsample.generalstore:id/nameField");
+    public By btnLetShop = By.id("com.androidsample.generalstore:id/btnLetsShop");
+    public By radMale = By.id("com.androidsample.generalstore:id/radioMale");
+    public By radFema = By.id("com.androidsample.generalstore:id/radioMale");
+    public By spinCon = By.id("com.androidsample.generalstore:id/spinnerCountry");
+    public By toastMsg = By.xpath("//android.widget.Toast[@text='Please enter your name']");
+    public By textoHomeTitle = By.id("com.androidsample.generalstore:id/toolbar_title");
 
     public GeneralStoreHomePage(AndroidDriver driver) {
         super(driver);
     }
 
     public void primerTest(){
+        /*
+        Introducimos texto en el input text
+         */
         type(txtName,"Miguel");
-        click(radMale);
-        click(spinCon);
-        WebElement el = driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Argentina\"));"));
+        /*
+        Realizamos click en el radio buttom "male"
+         */
+        click(radMale,"");
+        /*
+        Realizamos click en el spinner
+         */
+        click(spinCon,"");
+        /*
+
+         */
+
+        WebElement el = scrollHasta("Argentina");
         el.click();
-        click(btnLetShop);
+        click(btnLetShop,"Let's  Shop");
     }
 
     public void segundoTest(){
-        click(btnLetShop);
+        click(btnLetShop,"Let's  Shop");
         textoToast = esperarHastaConTexto(toastMsg);
+    }
+
+    public String cuartoTest(){
+        return esperarHastaConTexto(textoHomeTitle);
     }
 }
