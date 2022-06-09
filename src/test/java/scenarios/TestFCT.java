@@ -46,6 +46,12 @@ public class TestFCT {
 
     @Test
     @Order(1)
+    /**
+     * El primer test juega con los primeros componentes.
+     * Se selecciona un país, se escribe un nombre se selecciona un sexo
+     * y se presiona el botón.
+     * El test valida comprobando la presencia de un texto en la siguiente página.
+     */
     public void primerTest() throws IOException, InterruptedException {
         generalStoreHomePage.primerTest();
 
@@ -55,6 +61,11 @@ public class TestFCT {
 
     @Test
     @Order(2)
+    /**
+     * El segundo test solo presiona el botón provocando un error con su correspondiente
+     * recordatorio.
+     * El test resulta satisfactorio si aparece un toast.
+     */
     public void segundoTest() throws IOException, InterruptedException {
         generalStoreHomePage.segundoTest();
 
@@ -64,16 +75,10 @@ public class TestFCT {
 
     @Test
     @Order(3)
-    public void tercerTest() throws IOException, InterruptedException {
-        generalStoreHomePage.primerTest();
-        productsPage.tercerTest();
-
-        assertEquals("Please add some product at first", ProductsPage.textoToast);
-        generalStoreHomePage.screenShotSelenium(Thread.currentThread().getStackTrace()[1].getMethodName());
-    }
-
-    @Test
-    @Order(4)
+    /**
+     * El cuarto test comprueba que el botón de retroceder lleve a la página de
+     * procedencia.
+     */
     public void cuartoTest() throws IOException, InterruptedException {
         generalStoreHomePage.primerTest();
         productsPage.cuartoTest();
@@ -83,7 +88,26 @@ public class TestFCT {
     }
 
     @Test
+    @Order(4)
+    /**
+     * El tercer test busca entrar en el carrito de compra sin añadir
+     * ningún producto, provocando un error.
+     * El test es válido si aparece un toast.
+     */
+    public void tercerTest() throws IOException, InterruptedException {
+        generalStoreHomePage.primerTest();
+        productsPage.tercerTest();
+
+        assertEquals("Please add some product at first", ProductsPage.textoToast);
+        generalStoreHomePage.screenShotSelenium(Thread.currentThread().getStackTrace()[1].getMethodName());
+    }
+
+    @Test
     @Order(5)
+    /**
+     * El quinto test comprueba que el artículo que se ha metido en el carrito corresponde
+     * con el artículo seleccionado.
+     */
     public void quintoTest() throws IOException, InterruptedException {
         generalStoreHomePage.primerTest();
         productsPage.quintoTest();
@@ -94,6 +118,9 @@ public class TestFCT {
 
     @Test
     @Order(6)
+    /**
+     * El sexto test comprueba que el precio de dos artículos es correcto.
+     */
     public void sextoTest() throws IOException, InterruptedException {
         generalStoreHomePage.primerTest();
         productsPage.elegirDosProductos();
@@ -105,6 +132,10 @@ public class TestFCT {
 
     @Test
     @Order(7)
+    /**
+     * El séptimo test comprueba que se muestra la ventana con los términos y
+     * condiciones correctamente y la cierra.
+     */
     public void septimoTest() throws InterruptedException, IOException {
         generalStoreHomePage.primerTest();
         productsPage.elegirDosProductos();
